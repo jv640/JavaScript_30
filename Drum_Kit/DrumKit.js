@@ -1,14 +1,29 @@
+let count = 0;
+function removeTransition (e) {
+	if (e.propertyName !== "transform") return;
+	// console.log(e)
+	this.classList.remove("playing");
+	// count = count - 1;
+	// console.log(count)
+
+}
+
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener("transitionend", removeTransition));
+
+
 window.addEventListener("keydown", function (e) {
 	const key = document.querySelector(`.key[data-key="${ e.key }"]`);
 	if (!key)
 		return;
-	let sound = key.textContent.substring(1);
-	sound = sound.substring(sound.indexOf("\n"));
-	sound = sound.substring(5);
-	sound = sound.substring(0, sound.indexOf("\n"));
-	console.log(sound.length)
-	for (let i = 0; i < sound.length; i++)
-		console.log(i, sound[i]);
-	const audio = new Audio(`Audio/${ sound.toLowerCase() }.wav`)
+
+	key.classList.add("playing");
+	// count = count + 2;
+	// console.log(count)
+
+	let sound = key.getElementsByClassName("sound")[0].innerHTML;
+	// console.log(sound)
+
+	const audio = new Audio(`Audio/${ sound.toLowerCase() }.wav`);
 	audio.play();
 });
