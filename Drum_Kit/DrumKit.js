@@ -1,3 +1,5 @@
+// There is a small bug that if we presses another ket before the trasition of previous completed.
+// then it leaves its previous transaction incomplete
 let count = 0;
 function removeTransition (e) {
 	if (e.propertyName !== "transform") return;
